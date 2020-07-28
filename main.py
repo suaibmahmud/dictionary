@@ -62,7 +62,6 @@ class DictManager(GridLayout):
             # return the string in TextInput
             # checking if the keys[] is empty
             if self.keys == []:
-                self.d_out.text = ""
                 self.d_out.text = self.obj
 
             # if not then return the keys in TextInput (output) and let users to choose which word they want to know
