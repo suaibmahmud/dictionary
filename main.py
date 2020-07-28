@@ -1,4 +1,6 @@
 import json
+
+# to get most possible nearest matches
 from difflib import get_close_matches
 
 from kivy.app import App
@@ -12,20 +14,13 @@ dict = json.load(open("data.json"))
 
 class DictManager(GridLayout):
 
-    # init method for keywords
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-
-        # declare an empty list for storing nearest matched words
-        self.keys = []
-
-        # declare an empty string for storing translated strings
-        self.obj = ""
-
     def search_btn(self, word):
 
         # converting input text to lower
         word = word.lower()
+
+        # declare an empty list for storing nearest matched words
+        self.keys = []
 
         # method for translation
         def translate(word):
@@ -43,6 +38,7 @@ class DictManager(GridLayout):
                 return dict[word.upper()]
 
             # just checking the length of the possible matched words
+            # get_close_matches("any word", a list or dictionary or tuple where the data is stored)
             elif len(get_close_matches(word, dict.keys())) > 0:
 
                 # storing the nearest matched keys in the list
@@ -55,6 +51,9 @@ class DictManager(GridLayout):
         # assign the translate() in a variable
         self.output = translate(word)
 
+        # declare an empty string for storing translated strings
+        self.obj = ""
+
         # to print the results in column
         if type(self.output) == list:
             for self.item in self.output:
@@ -63,9 +62,10 @@ class DictManager(GridLayout):
             # return the string in TextInput
             # checking if the keys[] is empty
             if self.keys == []:
+                self.d_out.text = ""
                 self.d_out.text = self.obj
 
-            # if not then return the keys in TextInput and let users to choose which word they want to know
+            # if not then return the keys in TextInput (output) and let users to choose which word they want to know
             else:
                 self.d_out.text = ("\nnearest matched words:\n\n=> %s" % self.keys)
 
