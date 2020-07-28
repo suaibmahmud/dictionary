@@ -1,0 +1,39 @@
+<DictManager>:
+    id: dictionary
+    d_in: input
+    d_out: output
+    rows: 2
+    padding: 5
+    spacing: 5
+
+    GridLayout:
+        cols: 2
+        padding: 0
+        spacing: 5
+        size_hint: 0.1, 0.07
+
+        TextInput:
+            id: input
+            multiline: False
+            text: ""
+            halign: 'left'
+            font_name: 'Ariali'
+
+        Button:
+            text: 'Search'
+            font_size: 12
+            size_hint: 0.25, 0.07
+            on_press: dictionary.search_btn(input.text)
+
+
+    BoxLayout:
+        padding: 0
+        spacing: 0
+
+        TextInput:
+            id: output
+            halign: 'left'
+            multiline: True
+            text: ""
+            readonly: True
+            font_name: 'Arial'
