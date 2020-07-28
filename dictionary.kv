@@ -1,6 +1,10 @@
 <DictManager>:
     id: dictionary
+
+    # for input TextInput
     d_in: input
+
+    # for output TextInput
     d_out: output
     rows: 2
     padding: 5
@@ -13,6 +17,8 @@
         size_hint: 0.1, 0.07
 
         TextInput:
+
+            # id for input TextInput
             id: input
             multiline: False
             text: ""
@@ -31,9 +37,13 @@
         spacing: 0
 
         TextInput:
+
+            # id for output TextInput
             id: output
             halign: 'left'
             multiline: True
             text: ""
+
+            # to make output TextInput un editable
             readonly: True
             font_name: 'Arial'
